@@ -620,4 +620,16 @@ Using Z-Transforms make sure you are happy deriving the following from the defin
 From here it is quite simple. You can see that in order to find $X(z)$ you must find $(zI-A)^{-1}$ and then just simplify the right hand size. From this take the inverse transform to get x(k).
 \subsection{The rest}
 	There was a bit more to this lecture but as it was mainly an exercise it's kind of hard to write in note form. But here are some other noteable things that should be taken, mainly concerning matrix multiplication.\\\\
+	A matrix $A$ can be written as a cobination of matricies. An example of this is $A=T\Lambda T^{-1}$ where $\Lambda$ is a diagonal matrix of eigenvalues of A and T is a matrix of the eigenvectors corresponding to those eigenvalues. This is a very useful method of breaking down a matrix as we will see here: 
+
+	\begin{gather}
+		A^2=(T\Lambda T^{-1})(T\Lambda T^{-1})=T\Lambda (TT^{-1})\Lambda T^{-1}=T\Lambda \mathbb{I}\Lambda T^{-1} = T\Lambda^2T^{-1}
+	\end{gather}
+	This then follows to a useful rule of:
+	\begin{gather}
+		A^k=T\Lambda^kT^{-1}
+	\end{gather}
+	This makes calcualtions much easier as you are taking the square of a diagonal matrix which is simply just squaring each element.\\\\
+	There may be other things that appeared in this lecture which I have skimmed over but they should be coverd in lecture 8 anyway.
+\section{Lecture 8: The three hours.}
 \end{document}
