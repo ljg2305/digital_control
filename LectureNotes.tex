@@ -632,4 +632,85 @@ From here it is quite simple. You can see that in order to find $X(z)$ you must 
 	This makes calcualtions much easier as you are taking the square of a diagonal matrix which is simply just squaring each element.\\\\
 	There may be other things that appeared in this lecture which I have skimmed over but they should be coverd in lecture 8 anyway.
 \section{Lecture 8: The three hours.}
+\subsection{Pulse Transfer Function(PTF)}
+	Is there an analogous of the PTF for state space representations?\\
+	To start with we will have an exaple of the state space equation in continious time:
+	\begin{figure}[htp]
+		\centering
+		\includegraphics[scale=0.3]{images/force}
+	\end{figure}
+	\FloatBarrier
+	We can use this equation to describe the abouve system, note that $q$ is the distance from the wall:
+	\begin{equation}
+		m\frac{d^2q}{dt^2} + kq + b\frac{dq}{dt} = F
+	\end{equation}
+	Rearrange for $\frac{d^2q}{dt^2}$:
+	\begin{equation}
+		\frac{d^2q}{dt^2}= \frac{F}{m}- \frac{k}{m}q - \frac{b}{m}\frac{dq}{dt}
+	\end{equation}
+	Then we define the variable x as:
+	\begin{gather}
+		x_c:=
+ 		\begin{bmatrix} q \\ \frac{dq}{dt}\end{bmatrix}
+	\end{gather}
+Therefore we can then write:
+\begin{gather}
+	x_c=
+	\begin{bmatrix} \frac{dq}{dt} \\ \frac{d^2q}{dt^2}\end{bmatrix}
+ =
+  \begin{bmatrix}
+	0 & 1 \\
+	-\frac{k}{m}& -\frac{k}{b}
+   \end{bmatrix}
+  \begin{bmatrix} q \\ \frac{dq}{dt}\end{bmatrix} 
+  +\begin{bmatrix} 0 \\ \frac{1}{m}\end{bmatrix}F
+\end{gather}
+If we take the ouptut of our equation to be position(q) then we get:
+\begin{gather}
+	y = \begin{bmatrix} 1 & 0\end{bmatrix}
+	\begin{bmatrix} q \\ \frac{dq}{dt}\end{bmatrix} 
+	+0F
+\end{gather}
+In this case we will then write out statespace equation in the form: 
+\begin{gather}
+	\frac{dx_c}{dt}= Ax_c+Bu\\
+	y = Cx_c + Du
+\end{gather}   
+where the solution is:
+\begin{gather}
+	x(t) =e^{At}x_c(t)+ \int_{0}^t e^{A(t-\tau)}Bu(\tau)d\tau
+\end{gather}                                               
+We now quickly consider what $e^{At}$ is in matrix form:
+\begin{gather}
+	e^{At}:=\mathbb{I}+At + \frac{A^2}{2}t^2+...+\frac{A^k}{k}t^{k}\\
+	e^{At} = Te^{\Lambda t}T^{-1}
+\end{gather}                                                                         
+Now we have to try an consider this in a discrete time state-space model so we want $x_cb \rightarrow x_d$.\\
+Now we take $x_d(k)=x_c(kT)$.\\
+I'm going to attempt this proof but first write down the starting point/s and the answer as these are the things we actually need to know whereas the proof is not important but may be useful to understand.\\
+\begin{gather}
+	x((k+1)T)= e^{A(k+1)T}x(0) + \int_0^{(k+1)T}e^{A(k+1)T-\tau}Bu(\tau)d\tau	\\
+	x(kT)= e^{AkT}x(0) + \int_0^{kT}e^{kT-\tau}Bu(\tau)d\tau	
+\end{gather}
+``From this conclude'':
+\begin{equation}
+	x((k+1)T)= e^{AT}x(kT)+ e^{A(k+1)T}\int^{(k+1)T}_{kT}e^{A(-\tau)}
+\end{equation}
+
+After some mathmatical wizardry which was taught three times that day (and I may or may not include in these notes) we arrive at the final anwer:
+
+\begin{equation}
+	x((k+1)T)=e^{AT}x(kT)+\int^{T}_{0}e^{A(T-\tau)}Bd\tau u(kT)
+\end{equation}
+for this to work the input MUST be a zero order hold block (ZOH) as this allows the association made in the previous equation which allowed $u(\tau)$ to be equal to $u(kT)$.\\ 
+You should now recognise this eqatution as it is in the form of the origional statespace equation (it also might be worth noting the similarity to the solution for the continious time example from earlier). For clarification here is it written differently:
+\begin{gather}
+	x((k+1)T) = G x(kT) + H u(kT)\\
+	G:=e^{AT} \qquad H:=\int^{T}_{0} e^{A(T-\tau)}Bd\tau
+\end{gather}
+Note that G and H are funtions of A and B.
+
+\subsection{The rest}
+ The rest of this lecture just covered an exaple of state space equations somolar to the one given in the self study lecture so I will refrain from repeating myself. If I can remember it then I will make a note about singular matricies which he talked about in the extra lecture.                                                                                                                             
+
 \end{document}
