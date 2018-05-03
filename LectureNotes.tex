@@ -28,6 +28,7 @@
 \usepackage{ulem}
 \usepackage{enumerate}
 \usepackage{amssymb}
+\usepackage{cancel}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % DOCUMENT BEGIN
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -66,7 +67,7 @@
 		    \qquad
 		    \mathcal{L}(\delta(\cdot-\tau))=e^{-s \tau}
 		\end{equation}
-		We can then simplify this further than laplace as we will always will be using a impulse.
+		We can then simplify this further than Laplace as we will always will be using a impulse.
 		\begin{equation}
 		    X^*(s)=\sum\limits_{k=0}^{\infty} x(kT)\mathcal{L}(\delta(\cdot-kT)) = \sum\limits_{k=0}^{\infty}x(kT)e^{-skT}= \sum\limits_{k=0}^{\infty}x(kT)z^{-k}
 		\end{equation}
@@ -125,7 +126,7 @@
 		\end{equation}
 	\subsection{Z-Transform rules}
 		With a Z transform we convert a set of series of real numbers to a set of formal power series.
-	Some Simple rules of the Z-transform (same as laplace I think):
+	Some Simple rules of the Z-transform (same as Laplace I think):
 		\begin{equation}
 		    \mathcal{Z}(\{x_{k}+y_{k}\}) = \mathcal{Z}(\{x_{k})+\mathcal{Z}(y_{k}\})
 		\end{equation}
@@ -221,7 +222,7 @@
 	We define reasonable as ``bounded". $\{u_k\}$ is bounded if there exists an $M$ such that $|u_k|<M $ for $k=0,1,...$\\
 	A system is said to be stable if bounded inputs produce bounded outputs (for zero initial conditions).\\\\
 	For this next section we will be considering the equation $Y(z)=H(z)U(z)$ where H(z) is the transfer function.\\
-	$U(z)$ rational funtion: when is it the Z-transform of a bounded signal?\\
+	$U(z)$ rational function: when is it the Z-transform of a bounded signal?\\
 	for $U(k)=\{\alpha^k\} \rightarrow^\mathcal{Z} \frac{z}{z-\alpha}$ the condition $|\alpha|<1$(within unit circle) must hold true to be bounded.\\
 	$Y(z)$ rational comes from a bounded sequence if and only if all of its poles are in an open unit disk ($\mathcal{D}$).\\
 	From this, if $U(z)$ has all of its poles in $\mathcal{D}$ then $Y(z)$ has all its poles in $(\mathcal{D})$ of and only if $H(z)$ has all of its poles in the unit circle $\mathcal{D}$.\\\\
@@ -311,7 +312,7 @@
 		f(t)=\sum\limits_{\infty}^{k=-\infty}f(kT)\frac{sin(\frac{w_s(t-kT)}{2})}{\frac{w_s(t-kT)}{2}}= \sum\limits_{\infty}^{k=-\infty}sinc(\frac{w_s(t-kT)}{2})
 	\end{equation}
 	
-	Proof of this can be done using forrier series. Here is a quick definition of how to move from frequency domain to the time domain:
+	Proof of this can be done using Fourier series. Here is a quick definition of how to move from frequency domain to the time domain:
 	\begin{equation}
 		F(w)=\int\limits_{-\infty}^{\infty}e^{-jwt}f(t)dt
 	    	\qquad
@@ -417,17 +418,17 @@
 	\begin{itemize}   
 		\item Choice of T related to physical, technological, cost, etc. factors
 		\item Shannon's result = ideal situation: infinite accuracy, band limited signal, perfect reconstruction.
-		\item In reality: quantization effect, unmodelled dynamics, disturbances, structure of controller, unknown highest frequency $w_1$, etc.
+		\item In reality: quantization effect, un-modelled dynamics, disturbances, structure of controller, unknown highest frequency $w_1$, etc.
 		\item Effect: spurious low frequencies due to folding and aliasing of high frequencies
-		\item Rule of thumb: take frequency $2w_1$, and multiplyby 5 to 20 in order to find sampling frequency.
+		\item Rule of thumb: take frequency $2w_1$, and multiply by 5 to 20 in order to find sampling frequency.
 		\item Too high? Then decrease and check if controlled system still performs well.
-		\item Or, use antialiasing filters (Bessel, Butterworth, etc.) to bandlimit signal before sampling in order to obtain reasonable sampling rate.
+		\item Or, use anti-aliasing filters (Bessel, Butterworth, etc.) to band-limit signal before sampling in order to obtain reasonable sampling rate.
 	\end{itemize}
 	
 	\subsection{Pre filtering} 
-	This is quite self explanatory so i'm just going to copy from the slides.\\	To avoid aliasing problems, it may be useful to
-prefilter the analog signals before sampling.\\
-	Analog sensors have some filter integrated, but it is
+	This is quite self explanatory so I'm just going to copy from the slides.\\	To avoid aliasing problems, it may be useful to
+pre-filter the analogue signals before sampling.\\
+	Analogue sensors have some filter integrated, but it is
 not especially designed for your control problem!\\
 Easier way out: introduce analogue filter (e.g. Bessel)
 before the sampler. That will reduce the input signal
@@ -460,7 +461,7 @@ into account in the control design.\\
 	\end{enumerate}
 	In principle, ant $u(.)$(Discrete time) could do for the experiment but life is easier if $u_k=1$ for $k=0,1,...$\\
 	The reason for this is that the ZOH reconstruction of a discrete time step is equivalent to a continuous time step.
-	The relation between $y_c(.)$ and $u_c(.)$ is(in the laplace domain):
+	The relation between $y_c(.)$ and $u_c(.)$ is(in the Laplace domain):
 	\begin{equation}
 		Y_c(s)=\frac{1}{s+\alpha}U_c(s)
 	\end{equation}  
@@ -611,7 +612,7 @@ We will consider the state-space equation from the previous lecture. But first w
 \begin{equation}
     y(k) = CA^kx(0)+\sum\limits_{k-1}^{j=0}CA^{k-1-j}Bu(j) + Du(k)  
 \end{equation}
-Using Z-Transforms make sure you are happy deriving the following from the defintion of the $x(\cdot)$:
+Using Z-Transforms make sure you are happy deriving the following from the definition of the $x(\cdot)$:
 \begin{gather}
 	zX(z) - zx(0) = \mathcal{Z}(Ax(.)+Bu(.))= AX(z)+BX(z)\\
 	\qquad \rightarrow zX(z)-AX(z)=zx(0)+BU(z)\\
@@ -619,8 +620,8 @@ Using Z-Transforms make sure you are happy deriving the following from the defin
 \end{gather}
 From here it is quite simple. You can see that in order to find $X(z)$ you must find $(zI-A)^{-1}$ and then just simplify the right hand size. From this take the inverse transform to get x(k).
 \subsection{The rest}
-	There was a bit more to this lecture but as it was mainly an exercise it's kind of hard to write in note form. But here are some other noteable things that should be taken, mainly concerning matrix multiplication.\\\\
-	A matrix $A$ can be written as a cobination of matricies. An example of this is $A=T\Lambda T^{-1}$ where $\Lambda$ is a diagonal matrix of eigenvalues of A and T is a matrix of the eigenvectors corresponding to those eigenvalues. This is a very useful method of breaking down a matrix as we will see here: 
+	There was a bit more to this lecture but as it was mainly an exercise it's kind of hard to write in note form. But here are some other notable things that should be taken, mainly concerning matrix multiplication.\\\\
+	A matrix $A$ can be written as a combination of matrices, this is known as spectral decomposition. An example of this is $A=T\Lambda T^{-1}$ where $\Lambda$ is a diagonal matrix of eigenvalues of A and T is a matrix of the eigenvectors corresponding to those eigenvalues. This is a very useful method of breaking down a matrix as we will see here: 
 
 	\begin{gather}
 		A^2=(T\Lambda T^{-1})(T\Lambda T^{-1})=T\Lambda (TT^{-1})\Lambda T^{-1}=T\Lambda \mathbb{I}\Lambda T^{-1} = T\Lambda^2T^{-1}
@@ -629,18 +630,18 @@ From here it is quite simple. You can see that in order to find $X(z)$ you must 
 	\begin{gather}
 		A^k=T\Lambda^kT^{-1}
 	\end{gather}
-	This makes calcualtions much easier as you are taking the square of a diagonal matrix which is simply just squaring each element.\\\\
-	There may be other things that appeared in this lecture which I have skimmed over but they should be coverd in lecture 8 anyway.
+	This makes calculations much easier as you are taking the square of a diagonal matrix which is simply just squaring each element.\\\\
+	There may be other things that appeared in this lecture which I have skimmed over but they should be covered in lecture 8 anyway.
 \section{Lecture 8: The three hours.}
 \subsection{Pulse Transfer Function(PTF)}
 	Is there an analogous of the PTF for state space representations?\\
-	To start with we will have an exaple of the state space equation in continious time:
+	To start with we will have an example of the state space equation in continuous time:
 	\begin{figure}[htp]
 		\centering
 		\includegraphics[scale=0.3]{images/force}
 	\end{figure}
 	\FloatBarrier
-	We can use this equation to describe the abouve system, note that $q$ is the distance from the wall:
+	We can use this equation to describe the above system, note that $q$ is the distance from the wall:
 	\begin{equation}
 		m\frac{d^2q}{dt^2} + kq + b\frac{dq}{dt} = F
 	\end{equation}
@@ -665,13 +666,13 @@ Therefore we can then write:
   \begin{bmatrix} q \\ \frac{dq}{dt}\end{bmatrix} 
   +\begin{bmatrix} 0 \\ \frac{1}{m}\end{bmatrix}F
 \end{gather}
-If we take the ouptut of our equation to be position(q) then we get:
+If we take the output of our equation to be position(q) then we get:
 \begin{gather}
 	y = \begin{bmatrix} 1 & 0\end{bmatrix}
 	\begin{bmatrix} q \\ \frac{dq}{dt}\end{bmatrix} 
 	+0F
 \end{gather}
-In this case we will then write out statespace equation in the form: 
+In this case we will then write out state-space equation in the form: 
 \begin{gather}
 	\frac{dx_c}{dt}= Ax_c+Bu\\
 	y = Cx_c + Du
@@ -697,20 +698,695 @@ I'm going to attempt this proof but first write down the starting point/s and th
 	x((k+1)T)= e^{AT}x(kT)+ e^{A(k+1)T}\int^{(k+1)T}_{kT}e^{A(-\tau)}
 \end{equation}
 
-After some mathmatical wizardry which was taught three times that day (and I may or may not include in these notes) we arrive at the final anwer:
+After some mathematical wizardry which was taught three times that day (and I may or may not include in these notes) we arrive at the final answer:
 
 \begin{equation}
 	x((k+1)T)=e^{AT}x(kT)+\int^{T}_{0}e^{A(T-\tau)}Bd\tau u(kT)
 \end{equation}
 for this to work the input MUST be a zero order hold block (ZOH) as this allows the association made in the previous equation which allowed $u(\tau)$ to be equal to $u(kT)$.\\ 
-You should now recognise this eqatution as it is in the form of the origional statespace equation (it also might be worth noting the similarity to the solution for the continious time example from earlier). For clarification here is it written differently:
+You should now recognise this equation as it is in the form of the original state-space equation (it also might be worth noting the similarity to the solution for the continuous time example from earlier). For clarification here is it written differently:
 \begin{gather}
 	x((k+1)T) = G x(kT) + H u(kT)\\
 	G:=e^{AT} \qquad H:=\int^{T}_{0} e^{A(T-\tau)}Bd\tau
 \end{gather}
-Note that G and H are funtions of A and B.
+Note that G and H are functions of A and B.
 
 \subsection{The rest}
- The rest of this lecture just covered an exaple of state space equations somolar to the one given in the self study lecture so I will refrain from repeating myself. If I can remember it then I will make a note about singular matricies which he talked about in the extra lecture.                                                                                                                             
+ The rest of this lecture just covered an example of state space equations similar to the one given in the self study lecture so I will refrain from repeating myself. If I can remember it then I will make a note about singular matrices which he talked about in the extra lecture.                                                                                                                             
+\section{Stability and Controllability}
+\subsection{Recap}
+To kick off this lecture he gave a quick recap with a useful table, so here it is.
+\begin{table}[htp!]
+\centering
+\begin{tabular}{l|l}
+Continuous Time & Discrete Time \\ \hline 
+A               & $e^{AT}$ \\
+B               & $\int^{T}_{0}e^{A(T-\tau)}d\tau$ \\
+C               & C \\
+D               & D
+\end{tabular}
+\end{table}
+\subsection{Property preservation}
+	This section concerns the property preservation under discretion (ZOH).\\
+	\textbf{Asymptotic Stability} of a state space equation means that "solutions of $\frac{dx}{dt}=Ax$ go to 0 as $t \rightarrow \infty$". This can also be written as "all eigenvalues of A are in the open left hand plane".\\
+	An example of this is:
+	\begin{equation}
+		\frac{dx}{dt}= A x \qquad x(t) = e^{A T}x(0)
+	\end{equation}
+	when interpreted with spectral decomposition:
+	\begin{gather}
+		A=V\Lambda V^{-1} \qquad \frac{dx}{dt}= A x = V\Lambda V^{-1}x\\
+		V^{-1}\frac{dx}{dt} = \Lambda V^{-1}x \qquad \frac{d(V^{-1})x}{dt} = \Lambda (V^{-1}x) \qquad x' := V^{-1}x
+	\end{gather}
 
+	So what does it mean for $x(k+1) = A_d x(k)$ to be asymptotically stable ?\\
+	$x(k)\rightarrow 0$ as $k\rightarrow \infty$ $\Longleftrightarrow$ all eigenvalues of $A_d$ lie in the open unit disk.\\\\
+	We will consider this using an example with respect to the previous statement: \\
+	\begin{gather}
+	x(k+1)=\alpha x(k)\\
+	x(k) = \alpha^{k} x(0)
+	\end{gather}
+	You can see that x(k) will tend to 0 if and only if $\alpha \leq 1$\\
+	Note that the eigenvalues of $e^{AT}$ are $e^{\lambda i T}$\\  
+	eg. $\lambda_i = r_i+j s_i$ where $r_i < 0$
+	\begin{gather}
+		|e^{\lambda_i}T|= |e^{r_iT+js_iT}| = |e^{r_iT}e^{js_iT}| = |e^{r_iT}||e^{js_iT}|\\
+		|e^{r_iT}| < 1
+	\end{gather}
+	This system is stable as all $\lambda_i's$ are stable. s.t. $Re(\lambda_i)< 0$ for all of i. Hence we ignore the imaginary part in the previous equation.
+	\subsection{Controllability} 
+	Can I reach an arbitrary $x_{final}$ starting from any arbitrary $x_{initial}$   \\
+	This is also equivalent with: "Given arbitrary $X_{in},X_{f}$ does there exist a non-negative integer M and an input sequence $u(0) ... u(M-1)$ such that$ X(M)=x_{final}$ when $x(0) = x_{initial}$"\\
+	This will be considered with this case:\\
+	\begin{gather}
+	 x(0) = 0 \qquad x(M) = x_{final} = \sum^{M-1}_{j = 0}A^{m-1-j}Bu(j)\\
+	 = 
+	  		\begin{bmatrix} 
+ 			B \\ AB \\ ...\\ A^{M-1}B
+ 		\end{bmatrix}
+ 		 		 \begin{bmatrix} 
+ 			u(m-1)&u(m-2)&...&u(0)
+ 		\end{bmatrix}\\
+ 		:= \mathcal{C}_m  U 
+	\end{gather}
+	$x_{final}$ is reachable from $x(0)  = 0$ if and only if there exists an M and u(.) such that the previous equation holds.\\
+	\begin{gather}
+		\begin{bmatrix} 
+	 		x_{f1}\\x_{f2}\\...\\x_{fm}
+	 	\end{bmatrix}	
+	 	= \mathcal{C}_m
+	 	\begin{bmatrix} 
+ 			u(m-1)\\u(m-2)\\...\\u(0)
+ 		\end{bmatrix}
+ 		= \mathcal{C}_m \bar{U}_m
+	\end{gather}
+	A solution to $\bar{U}_m$ exists is and only if the columns of $\mathcal{C}_m$ the whole space $\mathcal{R}^M$. $\mathcal{C}_m$ contains n linearly independent columns. \\
+	A quick example explaining the previous comment:\\
+	\begin{gather}
+		\begin{bmatrix}
+			1\\1 
+		\end{bmatrix}=
+		\begin{bmatrix}
+			1 & 3\\
+			0 & 0 
+		\end{bmatrix}
+		\begin{bmatrix}
+			u(1)\\u(0) 
+		\end{bmatrix}
+	\end{gather}
+	the left hand side cannot be expressed as a linear combination of columns of the design matrix.\\
+	For a single input system, reachability exists if and only if $\mathcal{C}_m$ has n linearly independent columns.  
+	
+	\section{Controllability (Continued)}
+		 This first part of this lecture was a little recap by the looks of it so I will skip over that.\\
+		% Can I, starting from an arbitrary $x(0)$ achieve an arbitraty $x_final$ in a finite amount of time ? if so then the system is controlable.
+		% \begin{gather}
+		% 	x(k) = A^{k}x(0) + \sum^{k-1}_{j=0}A^{k-1-j}Bu(j)\\
+		% 	x(k) - A^{k}x(0) = 
+		% 	\begin{bmatrix}
+		% 		B & AB & ... & A^{k-1}B
+		% 	\end{bmatrix}
+		% 	\begin{bmatrix}
+		% 		u(k-1) \\...\\u(1) \\ u(0)
+		% 	\end{bmatrix}
+		% \end{gather}
+		% Controlablility can be found if and only if the columns of  
+		We start this lecture with an example of a transfer function and determining if it a stable system.\\ 
+		With starting parameters A, B and C of:
+		\begin{gather}
+			A= 
+			\begin{bmatrix}
+				0 & 1 \\
+				-2 & -3 
+			\end{bmatrix}
+			\qquad 
+			B = 
+			\begin{bmatrix}
+				0 \\ 1 
+			\end{bmatrix}
+			\qquad 
+			C = 	
+			\begin{bmatrix}
+				1 & 0 
+			\end{bmatrix}
+			\qquad			
+			\mathcal{C}(AB) = 
+			\begin{bmatrix}
+				0 & 1 \\
+				1 & -3 
+			\end{bmatrix}
+		\end{gather}
+		As the columns of $\mathcal{C}(AB)$ are all linearly independent this shows that this system is controllable.\\
+		The transfer function of this system is given as (not entirely sure why I need to check the slides on this one) and simplified to:
+		\begin{gather}
+			H(z)=C(z\mathbb{I}-A )^{-1}B = 
+			\begin{bmatrix}
+				1 & 0 
+			\end{bmatrix}
+			\begin{bmatrix}
+				z & -1 \\
+				2 & z+3 
+			\end{bmatrix}^{-1}
+			\begin{bmatrix}
+				0 \\ 1 
+			\end{bmatrix}\\
+			=
+			\begin{bmatrix}
+				1 & 0 
+			\end{bmatrix}
+			\frac{1}{z^2+3z+2}
+			\begin{bmatrix}
+				z+3 & 1 \\
+				-2 & z 
+			\end{bmatrix}^{-1}
+			\begin{bmatrix}
+				0 \\ 1 
+			\end{bmatrix}\\
+			= \frac{1}{z^2+3z+2} = \frac{1}{(z-1)(z+2)}
+		\end{gather}
+		We can tell that this current system is not stable by the fact that the roots of the transfer function do not lie within the unit circle. The next question is, can we now make this system stable by adding negative feedback ?
+
+
+	\begin{figure}[htp]
+		\centering
+		\includegraphics[scale=0.1]{images/l10_negativefeedback}
+	\end{figure}
+	\FloatBarrier
+	We need to find the transfer function between v and y (closed loop transfer function).
+	\begin{gather}
+		y(z) = \frac{1}{z^2+3z+2}u(z)
+		\qquad
+		u(z) = v(z)-\alpha y(z)\\
+		y(z) = \frac{1}{z^2+3z+2}(v(z)-\alpha y(z))\\
+		y(z) = \frac{\frac{1}{z^2+3z+2}}{1+\frac{\alpha}{z^2+3z+2}}v(z) = \frac{1}{z^2+3z+(2+\alpha)}
+	\end{gather}
+	We then consider for $\alpha > 0 $ then find the roots by taking the modulus of the quadratic equation. It is clear that this does not work therefore cannot be stable. The result is that $4\alpha <-4$ which cannot be true if $\alpha$ is positive.\\\\
+
+	We will now consider this following set of equations (same as above):
+
+
+	\begin{gather}
+		x(k+1) = 
+		\begin{bmatrix}
+			0 & 1 \\
+			-2 & -3
+		\end{bmatrix}
+		 x(k)+ 
+		\begin{bmatrix}
+			0\\1
+		\end{bmatrix}
+		u(k) \\
+		y(k) = 
+		\begin{bmatrix}
+			1 & 0
+		\end{bmatrix}
+		x(k)
+	\end{gather}
+	\begin{figure}[htp]
+		\centering
+		\includegraphics[scale=0.15]{images/l10_negativefeedback2}
+	\end{figure}
+	\FloatBarrier
+	from this we can see that:
+	\begin{equation}
+		u(k) = -kx(k)+v(k) \qquad  k\in \mathbb{R}^{m\times n} (\mathbb{R}^{1\times 2})
+	\end{equation}
+	We will first consider the part of the system in the dashed and dotted line which from now we will call (1):
+
+	\begin{gather}
+		x(k+1) = 
+		\begin{bmatrix}
+			0 & 1 \\
+			-2 & -3
+		\end{bmatrix}
+		 x(k)+ 
+		\begin{bmatrix}
+			0\\1
+		\end{bmatrix}
+		(-
+		\begin{bmatrix}
+			k_0 &k_1
+		\end{bmatrix}
+		x(k) + v(k)
+		) \\
+		=[		\begin{bmatrix}
+			0 & 1 \\
+			-2 & -3
+		\end{bmatrix}
+		+
+		\begin{bmatrix}
+			0 & 0 \\
+			-k_0 & -k_1
+		\end{bmatrix}
+		]+
+		\begin{bmatrix}
+			0\\1
+		\end{bmatrix}
+		u(k) \\
+		=
+		\begin{bmatrix}
+			0 & 1 \\
+			-2-k_0 & -3-k_1
+		\end{bmatrix}
+		+
+		\begin{bmatrix}
+			0\\1
+		\end{bmatrix}
+		u(k)
+	\end{gather}
+	now to consider y(k):
+
+	\begin{gather}
+		y(k)=
+		\begin{bmatrix}
+			1 & 0 
+		\end{bmatrix}
+		[z\mathbb{I}-
+		\begin{bmatrix}
+		0&1\\
+		-2-k_0& -3-k_1
+		\end{bmatrix}
+		]^{-1}
+		\begin{bmatrix}
+			0\\1
+		\end{bmatrix}
+	\end{gather}
+
+	this is our new transfer function.
+
+
+	\begin{gather}
+		=
+		\begin{bmatrix}
+			1 & 0 
+		\end{bmatrix}
+		\frac{1}{z^2+(3+k_1)z+(2+k_0)}
+		\begin{bmatrix}
+		z+3+k_1&1\\
+		-(2+k_0)  & z
+		\end{bmatrix}
+		\begin{bmatrix}
+			0\\1
+		\end{bmatrix}\\
+		= \frac{1}{z^2+(3+k_1)z+(2+k_0)}
+	\end{gather}
+	If we are given our `desired' closed loop poles as $-\frac{1}{2}$  \&  $-\frac{1}{3}$ then we know that the denominator should be equal to:
+	\begin{equation}
+	 (z+\frac{1}{2})(z+\frac{1}{3}) = z^2+\frac{5}{6}z+\frac{1}{6} = z^2+(3+k_1)z+(2+k_0)
+	 \end{equation}
+	 from this we can work out $k_0 = -\frac{11}{6}$ and $k_1 = -\frac{13}{6}$ \\
+
+	Ex \#2:
+	\begin{gather}
+			A= 
+			\begin{bmatrix}
+				2 & 0 \\
+				0 & 1 
+			\end{bmatrix}
+			\qquad 
+			B = 
+			\begin{bmatrix}
+				1 \\ 1 
+			\end{bmatrix}
+			\qquad 
+			C = 	
+			\begin{bmatrix}
+				1 & 1
+			\end{bmatrix}\\
+			TF = 			
+			\begin{bmatrix}
+				1 & 1
+			\end{bmatrix}
+			\begin{bmatrix}
+				z-2 & 0 \\
+				0 & z-1 
+			\end{bmatrix}^{-1}
+			\begin{bmatrix}
+				1 \\ 1 
+			\end{bmatrix}
+			= \frac{1}{z-2}+\frac{1}{z-1}=\frac{2z-3}{(z-2)(z-1)}
+			% \qquad			
+			% \mathcal{C}(AB) = 
+			% \begin{bmatrix}
+			% 	0 & 1 \\
+			% 	1 & -3 
+			% \end{bmatrix}
+		\end{gather}	 
+		Following the idea of state feedback:\\
+		We define $k=(k_0\quad k_1)$
+		\begin{gather}
+			A-Bk = 
+			\begin{bmatrix}
+				2& 0\\
+				0&1
+			\end{bmatrix}-
+			\begin{bmatrix}
+				k_0& k_1\\
+				k_0& k_1
+			\end{bmatrix}=
+			\begin{bmatrix}
+				2-k_0 & -k_1\\
+				-k_0 & 1-k_1
+			\end{bmatrix}
+		\end{gather}
+
+		we then find:
+		\begin{gather}
+			[z\mathbb{I}-(A-Bk)]^{-1}=\frac{1}{(z-k_0-2)(z+k_1-1)-k_0k_1}
+			\begin{bmatrix}
+				z+k_1-1 & -k_1\\
+				-k_0 & z+k_0-2
+			\end{bmatrix}
+		\end{gather}
+		we only care about the denominator of that equation and we want this to be true:
+		\begin{gather}
+			z^2+z(k_1-3+k_0)+(-k_0-2k_2+2)= z^2+\frac{5}{6} z +\frac{1}{6}
+		\end{gather}
+		From this we can then calculate $k_0$ and $k_1$:
+		\begin{gather}
+			\frac{5}{6}=k_1-3+k_0\\
+			\frac{1}{6}=2-k_0+2k_1\\
+			\begin{bmatrix}
+				1 &1 \\
+				-1 &2 
+			\end{bmatrix} 
+			\begin{bmatrix}
+				 k_0 \\ k_1
+			\end{bmatrix}
+			= 
+			\begin{bmatrix}
+				\frac{23}{6}\\
+				\frac{13}{3}
+			\end{bmatrix} 
+		\end{gather}
+		This is actually enough proof that there is a solution for k.\\
+		\subsection{Theory: kalman}
+		Given:
+		\begin{equation}
+			x(k+1) = A x(k) + Bu(k)
+		\end{equation}
+		\begin{equation}
+			y(k) = C x(k) + Du(k)
+		\end{equation}
+		Assume A, B are uncontrollable:\\
+		let $P_i \in \mathbb C$ (complex) be arbitrary\\
+		There exists a $k \in \mathbb R^{m\times n}$ such that $C(z\mathbb I - (A-Bk))^{-1}B$ has the $P_i$'s as poles.\\
+		``Arbitrary Pole assignment via controllability \& state feedback''
+		\section{Observability}
+		This lecture has an overview of the previous lecture then goes into detail about observability before diving into more detail.\\
+		Given data ${U_k}$ and ${y_k}$ and the static equations (ie. given A,B,C,D) determine x(0).\\
+			\begin{figure}[htp]
+		\centering
+		\includegraphics[scale=0.4]{images/l11_1}
+		\end{figure}
+		The system above can be described by the equations:
+		% \begin{gather}
+		% 	x(k)=A^kx(0)+\sum^{k-1}_{j=0}A^{k-1-j}Bu(j)\\
+		% 	y(k)=CA^kx(0)+\sum^{k-1}_{j=0}CA^{k-1-j}Bu(j)+Du(j)\\
+		% 	y(0)=Cx(0)+Du(0)\\
+		% 	y(1)=CAx(0)+CBu(0)+Du(1)\\
+		% 	y(1)=CA^2x(0)+CABu(0)+...
+
+		% \end{gather}
+
+		\begin{gather}
+			x(k)=A^kx(0)+\sum^{k-1}_{j=0}A^{k-1-j}Bu(j)\\	
+						y(k)=CA^kx(0)+\sum^{k-1}_{j=0}CA^{k-1-j}Bu(j)+Du(j)\\
+					y(0)=Cx(0)+Du(0)\\
+					y(1)=CAx(0)+CBu(0)+Du(1)\\
+					y(2)=CA^2x(0)+CABu(0)+...
+		\end{gather}
+		The problem equivalently stated is: can I determine x(0) from the equations:
+		 \begin{gather}
+					y(0)-Du(0) =Cx(0)\\
+					y(1)-Du(1)-CAx(0)=CBu(0)\\
+					y(N)-Du(1)-... =CA^{N-1}x(0)
+		\end{gather}
+		This can be written in the form: 
+		\begin{gather}
+			y=
+			\begin{bmatrix}
+				C\\
+				CA\\
+				\vdots\\
+				CA^{N-1}
+			\end{bmatrix}x(0)
+		\end{gather}
+		set N linear equations in the n unknowns $x_i(0)$ $i=1,\cdots,n$\\
+		we can uniquely identify $x(0)$ if and only if there are n linearly dependant equations  $\Leftrightarrow$ n linear dependant.\\
+
+		\subsection{Observers}
+		A system that estimates $x(k)$ on the basis of knowledge of ${u_k}$ and ${y_k}$.\\
+		"Estimates" means: the observer computes a vector $x'(k)$ such that $\lim\limits_{k\rightarrow \infty}x(k)-x'(k)=0$.\\
+		\begin{figure}[htp]
+		\centering
+		\includegraphics[scale=0.4]{images/l11_2}
+		\end{figure}
+		We want to be have access to x(k) so that we can have a state control feedback system but we don't necessarily have access to it. Therefore we need to 'observe' the system and work out what x'(k) is.\\
+		
+		We must then create the observer:\\
+		A':A-LC \qquad B':=B \qquad	C':=C \qquad	D':=D \\
+
+		Kalman states that id (A,C) observable then:
+		\begin{gather}
+			\begin{bmatrix}
+				C\\
+				CA\\
+				\vdots\\
+				CA^{N-1}
+			\end{bmatrix}
+		\end{gather}
+		has full column rank N.\\
+		Then there exists a $L\in\mathbb{R}^{n\times p}$ such that $A-LC$ has all its eigenvalues in the open unit disk. AND $x(k)-x'(k)=(A-LC)^k(x(0)-x'(0))$\\
+		We will consider the first sentence first:\\ 
+		We already know the controllability of x(k) (A,B) can be found by finding the full rank of $			\begin{bmatrix}
+				C&
+				CA&
+				\cdots&
+				CA^{N-1}
+			\end{bmatrix}$\\
+		we find the observability of y(k) (A,C) can be found by finding the column rank of 			$\begin{bmatrix}
+						C\\
+						CA\\
+						\vdots\\
+						CA^{N-1}
+					\end{bmatrix}\\
+								\begin{bmatrix}
+				C^T&
+				A^TC^T&
+				\cdots&
+				(A^{N-1})^TC^T
+			\end{bmatrix}$ has full row rank n!\\
+			(A,C) is controllable if and only if $[A^T,C^T]$ is controllable, therefore if and only if every choice $\lambda_1...\lambda_n$ there exists an $L^T=k$ such that the eigenvalues of $A^T-C^TL^T$ are $\lambda_1...\lambda_n$.\\
+			\subsection{Nilpotent Matrices}
+			This matrix has a nilpotent order of 1:\\
+			\begin{gather}
+				J=
+				\begin{bmatrix}
+					0 & 0 \\
+					0 & 0 \\
+				\end{bmatrix}
+			\end{gather}
+			This matrix has a nilpotent order of 2:\\
+			\begin{gather}
+				J=
+				\begin{bmatrix}
+					0 & 1 \\
+					0 & 0 \\
+				\end{bmatrix}\\
+								J^2=
+				\begin{bmatrix}
+					0 & 0 \\
+					0 & 0 \\
+				\end{bmatrix}
+			\end{gather}
+			I think you get the idea!
+\section{Observers Continued}
+	\subsection{Recap}
+	I think he was a bit more clear when going over this topic for the second time.\\
+	if (A,C) is observable, $A'=A-LC$ for a suitable L.\\
+	the following equation shows the observer:
+	\begin{gather}
+		y'(k+1)=Cx'(k)\\
+		x'(k+1) =Ax'(k) + Bu(k) + L(y'(k)-y(k))\\
+		x'(k+1) =Ax'(k) + Bu(k) + L(Cx'(k)-Cx(k))\\
+		e(k+1) = x'(k+1) - x(k+1) = A(x'(k)-x(k))+LC(x'(k)-x(k))\\
+		e(k+1) = (A+LC)e(k)
+	\end{gather}	
+	from this we then can derive some rules:\\
+	$x'(k)\rightarrow_{k\rightarrow 0}x(k)$ if and only if $x'(k)-x(k)\rightarrow_{k\rightarrow 0}0$ if and only if (A-LC) has all of its eigenvalues in the open unit disk.\\
+
+	Example:
+	\begin{gather}
+		A = 
+		\begin{bmatrix}
+			1 & 2\\
+			0 & 3 
+		\end{bmatrix}
+		\qquad
+		B = 
+		\begin{bmatrix}
+			4 \\
+			5
+		\end{bmatrix}
+		\qquad 
+		C = 
+		\begin{bmatrix}
+		 	6 & 7 
+		\end{bmatrix}
+	\end{gather}
+	is the pair (A,C) observable ?\\
+	\begin{gather}
+		\begin{bmatrix}
+			C\\
+			CA\\
+			\vdots\\
+			CA^{N-1}
+		\end{bmatrix}\rightarrow_{N=2}
+		\begin{bmatrix}
+		C\\CA
+		\end{bmatrix}=
+		\begin{bmatrix}
+			6 & 7\\
+			6 & 3
+		\end{bmatrix}		
+	\end{gather}
+	The (C,A) is non singular, hence the system is observable. By careful choice of $L\in \mathbb{R}^{2x1}$ I can place the eignvalues of $A-LC$ in the open unit disk.\\
+
+	We choose all of the eigenvalues of $A-LC$ at $\lambda = 0$\\
+
+	\begin{gather}
+		A-LC = 
+		\begin{bmatrix}
+			1 & 0\\
+			0 & 3 
+		\end{bmatrix}-
+		\begin{bmatrix}
+			L_0\\
+			L-1
+		\end{bmatrix}
+		\begin{bmatrix}
+			6 & 7 
+		\end{bmatrix}=
+		\begin{bmatrix}
+			1-6L_0& 2-7L_0\\
+			-6L-1 & 3-7L_1
+		\end{bmatrix}
+	\end{gather}
+	We can find the characteristic polynomial using $det(z\mathbb{I}-(A-LC))$ is\\ $(z-1+6L_0)(s-3+7L_1)+6L_1(2-7L_0)$\\
+	$=z^2+3z+7L_1z-z-7L_1+6L_0z-18L_0+\cancel{42L_0L_1}+12L_1-\cancel{42L_0L_1}$\\
+	$=z^2+z(-4+7L_1+6L_0)+(3+5L_1-18L_0)$ \\
+	We want to chose an L which removes the $z^1$ and the $z^0$ terms from the above equation. We want $\lambda$ to be zero.\\
+	\begin{gather}
+		-4+7L_1+6L_0 = 0\\
+		3+5L_1-18L_0 = 0\\
+		\downarrow\\
+		\begin{bmatrix}
+			6 & 7\\
+			-18 & 5 
+		\end{bmatrix}
+		\begin{bmatrix}
+			L_0\\
+			L_1
+		\end{bmatrix}=
+		\begin{bmatrix}
+			4\\
+			-3
+		\end{bmatrix}
+	\end{gather}
+	If the left hand side of the above equation is non singular then L exists.
+
+
+	What is so special about choosing $L=0$ ? \\
+	We will consider the two equations:
+	\begin{gather}
+		e(k+1) = (A-LC)e(k)\\
+		e(k) = (A-LC)^k e(0)
+	\end{gather}
+	if a matrix M has all of its eigenvalues = 0 then there exists a $k \leq n $ such that $M^k = 0$. This is the idea of nilpotent matrices from the previous lecture.
+
+	\subsection{Deadbeat Observer}
+		If $(A - LC)$ has all of its eigenvalues = 0, at most of n steps $e(k)=(A-LC)^ke(0) = 0$ $e(0)=0$. This suggests that there will be a perfect reconstruction after n steps.\\
+		This shows that the deadbeat controller will make its estimation quickly. I f there is noise in the system then this could make an inaccurate controller.
+
+	\subsection{Feedback}
+		% We will now refer to the input as v(k) 
+		what is v(k) here?
+		\begin{gather}
+			x(k+1)=Ax(k) + Bu(k)\\
+			x(k+1)=Ax(k) + B(-kx'(k)+v(k))\\
+			x'(k+1)=Ax'(k) + Bu(k)+L(Cx'(k)-Cx(k))\\
+			x'(k+1)=Ax'(k) + B(-kx'(k)+v(k))+LC(x'(k)-x(k))\\
+			\begin{bmatrix}
+				x(k+1)\\
+				x'(k+1)
+			\end{bmatrix}=
+			\begin{bmatrix}
+				&&\\
+				&&
+			\end{bmatrix}
+			\begin{bmatrix}
+				x(k)\\
+				x'(k)
+			\end{bmatrix}
+			+
+			\begin{bmatrix}
+				&\\
+				&
+			\end{bmatrix} v(k)
+		\end{gather}
+		The state for the observer controller scheme is:
+		\begin{gather}
+						\begin{bmatrix}
+				x(k)\\
+				x'(k)
+			\end{bmatrix}
+		\end{gather}
+		the state could also be in terms of the error:
+		\begin{gather}
+						\begin{bmatrix}
+				x(k)\\
+				e(k)
+			\end{bmatrix}
+		\end{gather}
+		We can also write this as:
+		\begin{gather}
+			\begin{bmatrix}
+				1 & 0\\
+				1 & 1
+			\end{bmatrix}
+			\begin{bmatrix}
+				x(k)\\
+				e(k)
+			\end{bmatrix}
+			= 
+			\begin{bmatrix}
+				x(k)\\
+				x'(k)
+			\end{bmatrix}
+		\end{gather}
+		Separation principle: one can design the observer and controller separately.  
+
+		\begin{gather}
+			\begin{bmatrix}
+				x(k+1)\\
+				e(k+1)
+			\end{bmatrix}=
+			\begin{bmatrix}
+				A-Bk & *\\
+				0 &  A-LC
+			\end{bmatrix}
+			\begin{bmatrix}
+				x(k)\\
+				e(k)
+			\end{bmatrix}
+			+
+			\begin{bmatrix}
+				B\\
+				0
+			\end{bmatrix} v(k)
+		\end{gather}
+
+		\subsection{Realization}
+			This is the part of the lecture which I boiled alive. I need to go over this to understand it.
 \end{document}
