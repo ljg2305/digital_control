@@ -3,8 +3,9 @@
 % University of Southampton
 %
 % author : Lawrence Gray (lg5g15)
+% editor : Rhys Thomas (rt8g15)
 %
-% edited : 2016-11-14
+% edited : 2018-05-07
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \documentclass[a4paper,11pt]{article}
@@ -43,12 +44,12 @@
 \section{Lecture 1: Intro }
 	This course concerns using digital control using impulse sampling. The data is sampled using a train of impulses, in this example $x(t)$ is being sampled:
 \begin{equation}
-	x^*(t):= \sum\limits_{k=0}^{\infty}x(kT)\delta(t-kT)
+	x^*(t):= \sum_{k=0}^{\infty}x(kT)\delta(t-kT)
 	\end{equation}
 	\subsection{Laplace to Z-Transform}
 		The Laplacian transformation of a function $f(t)$ is:\\
 		\begin{equation}
-		\mathcal{L}(f):= \int\limits_{0}^{\infty}e^{-st}dt
+		\mathcal{L}(f):= \int_0^{\infty}e^{-st}dt
 		\end{equation}
 
 		Example:\\
@@ -60,16 +61,16 @@
 			\]
 
 		\begin{equation}
-		\mathcal{L}(f(t)):= \int\limits_{0}^{\infty}e^{\alpha t}e^{-st}dt =\int\limits_{0}^{\infty}e^{(\alpha -s)t}dt= \frac{1}{s-\alpha}		\end{equation}
+		\mathcal{L}(f(t)):= \int_0^{\infty}e^{\alpha t}e^{-st}dt =\int_{0}^{\infty}e^{(\alpha -s)t}dt= \frac{1}{s-\alpha}		\end{equation}
 		Below are some examples using the impulse response which is used a lot in this course:
 		\begin{equation}
 		    \mathcal{L}(\delta(\cdot))=1
 		    \qquad
 		    \mathcal{L}(\delta(\cdot-\tau))=e^{-s \tau}
 		\end{equation}
-		We can then simplify this further than Laplace as we will always will be using a impulse.
+		We can then simplify this further than Laplace as we will always will be using an impulse.
 		\begin{equation}
-		    X^*(s)=\sum\limits_{k=0}^{\infty} x(kT)\mathcal{L}(\delta(\cdot-kT)) = \sum\limits_{k=0}^{\infty}x(kT)e^{-skT}= \sum\limits_{k=0}^{\infty}x(kT)z^{-k}
+		    X^*(s)=\sum_{k=0}^{\infty} x(kT)\mathcal{L}(\delta(\cdot-kT)) = \sum_{k=0}^{\infty}x(kT)e^{-skT}= \sum_{k=0}^{\infty}x(kT)z^{-k}
 		\end{equation}
 		We have defined z as:
 		\begin{equation}
@@ -77,7 +78,7 @@
 		\end{equation}
 		This brings the following definition of the Z transform:
 		\begin{equation}
-		    X(z):= \sum\limits_{\infty}^{k=0}x(kT)z^{-k}	
+		    X(z):= \sum_{k=0}^{\infty}x(kT)z^{-k}	
 		\end{equation}		
 \newpage
 	\subsection{Z-transform of a sequence}
@@ -92,7 +93,7 @@
 			\]
 		Z-transform:
 		\begin{equation}
-		    X(z)= \sum\limits_{\infty}^{k=0}x(kT)z^{-k}=1\cdot z^{-0} = 1
+		    X(z)= \sum_{k=0}^{\infty}x(kT)z^{-k}=1\cdot z^{-0} = 1
 		\end{equation}
 	Sequence 2:
 			\[ x(kT) =\begin{cases} 
@@ -103,7 +104,7 @@
 			\]
 		Z-transform:
 		\begin{equation}
-		    X(z)= \sum\limits_{\infty}^{k=0}x(kT)z^{-k}=1\cdot z^{-0} +1\cdot z^{-1}= 1+\frac{1}{z} = \frac{z+1}{z}
+		    X(z)= \sum_{k=0}^{\infty}x(kT)z^{-k}=1\cdot z^{-0} +1\cdot z^{-1}= 1+\frac{1}{z} = \frac{z+1}{z}
 		\end{equation}
 	Sequence 3:
 			\[ e^{\alpha \cdot}  =\begin{cases} 
@@ -118,11 +119,11 @@
 		To get the z transform of this we ``sample'' the signal  by stating $t=kT$ which makes our input function $e^{\alpha kT}$.\\
 		So what is the Z-transform of $\{(e^{\alpha T})^{k}\}_{k=0,1...}$
 		\begin{equation}
-		    X(z)= \sum\limits_{\infty}^{k=0}(e^{\alpha T})^{k}z^{-k}=\sum\limits_{\infty}^{k=0}(\frac{e^{\alpha T}}{z})^{k}
+		    X(z)= \sum_{k=0}^{\infty}(e^{\alpha T})^{k}z^{-k}=\sum_{k=0}^{\infty}(\frac{e^{\alpha T}}{z})^{k}
 		\end{equation}
 		Here we assume that z is such that $|\frac{e^{\alpha T}}{z}|<1$. This then means that we can simply use the geometric series.
 		\begin{equation}
-		    X(z)= \sum\limits_{\infty}^{k=0}(\frac{e^{\alpha T}}{z})^{k}=\frac{1}{1-\frac{e^{\alpha T}}{z}}=\frac{z}{z-e^{\alpha T}}
+		    X(z)= \sum_{k=0}^{\infty}(\frac{e^{\alpha T}}{z})^{k}=\frac{1}{1-\frac{e^{\alpha T}}{z}}=\frac{z}{z-e^{\alpha T}}
 		\end{equation}
 	\subsection{Z-Transform rules}
 		With a Z transform we convert a set of series of real numbers to a set of formal power series.
@@ -148,7 +149,7 @@
 	\end{tabular}
 	\end{center}
 	\begin{equation}
-		X(z):= \sum\limits_{\infty}^{k=0}x_{k+1}z^{-k}=	x_{1} + x_{2}z^{-1} +x_{3}z^{-2}...= z\mathcal{Z}(\{x_k\})-zx_0
+		X(z):= \sum_{k=0}^{\infty}x_{k+1}z^{-k}=	x_{1} + x_{2}z^{-1} +x_{3}z^{-2}...= z\mathcal{Z}(\{x_k\})-zx_0
 	\end{equation}
 \section{Lecture 2:}
 	Right Shift Rule $\{x(k-1)\}$ is simpler than the left shift rule:
@@ -157,7 +158,7 @@
 	\end{equation}
 	Convolution, $\{h(k)\}:=\{x(k)\}*\{y(k)\}$, is also a simple rule:
 	\begin{equation}
-		h(k) = \sum\limits_{k}^{j=0}y_{k-j}x_j
+		h(k) = \sum_{j=0}^{k}y_{k-j}x_j
 	\end{equation}
 	\begin{equation}
 		\mathcal{Z}(\{h(k)\})=\mathcal{Z}(\{x(k)\})\mathcal{Z}(\{y(k)\})
@@ -168,10 +169,10 @@
 	\end{equation}
 	From this we can then find the initial value as z tends to $\infty$ 
 	\begin{equation}
-		x_0=\lim\limits_{z \rightarrow \infty}\mathcal{Z}(\{x_k\})
+		x_0=\lim_{z \rightarrow \infty}\mathcal{Z}(\{x_k\})
 	\end{equation}
 	\subsection {Final Value Theorem:}
-		if $\mathcal{Z}(\{x_k\})$ has all of it's singularities in the open unit circle except possibly in the open unit circle except possibly one at $z=1$ then $\lim\limits_{Z\Rightarrow\infty}(x_k)=\lim\limits_{z\Rightarrow\infty}(1-z^{-1})\mathcal{Z}(\{x_k\})$.\\
+		if $\mathcal{Z}(\{x_k\})$ has all of it's singularities in the open unit circle except possibly in the open unit circle except possibly one at $z=1$ then $\lim_{Z\Rightarrow\infty}(x_k)=\lim_{z\Rightarrow\infty}(1-z^{-1})\mathcal{Z}(\{x_k\})$.\\
 		Note, for this course, almost all Z-transforms are rational functions so ``singularity" means 0 at the denominator/``pole"
 	\subsection{Fibonacci sequence/Difference equation}
 		A Fibonacci sequence is defined as:
@@ -228,7 +229,7 @@
 	From this, if $U(z)$ has all of its poles in $\mathcal{D}$ then $Y(z)$ has all its poles in $(\mathcal{D})$ of and only if $H(z)$ has all of its poles in the unit circle $\mathcal{D}$.\\\\
 	Theory:
 	\indent The system with TF $H(z)$ is bounded input bounded output stable (BIBO-stable) if and only if all the poles of $H(z)$ are in $\mathcal{D}$.\\
-	Note the "open" unit dis is for $|z|<1$ not \sout{$|z|\leq1$}.\\
+	Note the "open" unit disk is for $|z|<1$ not \sout{$|z|\leq1$}.\\
 	Example of unbounded:
 	\begin{equation}
 		H(z) = \frac{z}{z-1} \qquad \{u_k\}=\{1,1,1,1...\}
@@ -256,15 +257,15 @@
 		\includegraphics[scale=0.4]{images/sample_and_hold}
 		\end{figure}
 		\begin{equation}
-			u'(t)=\sum\limits_{k=0}^{\infty}u(kT)[\bar(1)(t-kT)-\bar(1)(t-(k+1)T)]		
+			u'(t)=\sum_{k=0}^{\infty}u(kT)[\bar(1)(t-kT)-\bar(1)(t-(k+1)T)]		
 		\end{equation}
 		As I cant be bothered to draw it i'm going to describe what this is doing. This part $[\bar(1)(t-kT)-\bar(1)(t-(k+1)T)]$ creates a unit pulse of length T between $kT$ and $(k+1)T$.\\
 		We next take the laplace of that: 
 		\begin{equation}
-			\mathcal{L}(u')=\sum\limits_{k=0}^{\infty}u(kT)[\mathcal{L}(\bar(1)(t-kT))-\mathcal{L}(\bar(1)(t-(k+1)T))]
+			\mathcal{L}(u')=\sum_{k=0}^{\infty}u(kT)[\mathcal{L}(\bar(1)(t-kT))-\mathcal{L}(\bar(1)(t-(k+1)T))]
 		\end{equation}	
 		\begin{equation}
-			=\sum\limits_{k=0}^{\infty}u(kT)[\frac{e^{-(k+1)Ts}}{s}-\frac{e^{-kTs}}{s}]=\sum\limits_{k=0}^{\infty}u(kT)[\frac{e^{-kTs}(1-e^{-Ts})}{s}]
+			=\sum_{k=0}^{\infty}u(kT)[\frac{e^{-(k+1)Ts}}{s}-\frac{e^{-kTs}}{s}]=\sum_{k=0}^{\infty}u(kT)[\frac{e^{-kTs}(1-e^{-Ts})}{s}]
 		\end{equation}
 		\begin{equation}
 			\mathcal{L}(u')=\frac{1-e^{-Ts}}{s}U^*(s)
@@ -285,7 +286,7 @@
 		
 		I wrote this down but cannot remember the relevance any more.\\
 		\begin{equation}
-		    	(g*u)(t)=\int\limits_{-\infty}^{\infty}g(t-\tau)u(\tau)d\tau
+		    	(g*u)(t)=\int_{-\infty}^{\infty}g(t-\tau)u(\tau)d\tau
 \end{equation} 
 \section{Lecture 4: Reconstruction of signals from samples}
 \subsection{First Order Sample and hold}
@@ -309,18 +310,18 @@
 	Shannon's theorem state that, if the sampling frequency $ w_s > 2 w_1$ then $f(.)$ can be uniquely reconstructed from its samples.\\
 	Moreover...what is the significance of this?
 	\begin{equation}
-		f(t)=\sum\limits_{\infty}^{k=-\infty}f(kT)\frac{sin(\frac{w_s(t-kT)}{2})}{\frac{w_s(t-kT)}{2}}= \sum\limits_{\infty}^{k=-\infty}sinc(\frac{w_s(t-kT)}{2})
+		f(t)=\sum_{k=-\infty}^{\infty}f(kT)\frac{\sin\left(\frac{w_s(t-kT)}{2}\right)}{\frac{w_s(t-kT)}{2}}= \sum_{k=-\infty}^{\infty}sinc\left(\frac{w_s(t-kT)}{2}\right)
 	\end{equation}
 	
 	Proof of this can be done using Fourier series. Here is a quick definition of how to move from frequency domain to the time domain:
 	\begin{equation}
-		F(w)=\int\limits_{-\infty}^{\infty}e^{-jwt}f(t)dt
+		F(w)=\int_{-\infty}^{\infty}e^{-jwt}f(t)dt
 	    	\qquad
-	    	f(t)=\frac{1}{2\pi}\int\limits_{-\infty}^{\infty}e^{jwt}F(w)dw
+	    	f(t)=\frac{1}{2\pi}\int_{-\infty}^{\infty}e^{jwt}F(w)dw
 	\end{equation}	
 	We then define the fourier transform of the sampled signal as:
 	\begin{equation}
-		F_s(w):=\frac{1}{T}\sum\limits_{k=-\infty}^{\infty}F(w+kw_s)
+		F_s(w):=\frac{1}{T}\sum_{k=-\infty}^{\infty}F(w+kw_s)
 	\end{equation}	
 	If $w_s>2w_1$:
 				\[ F(w) =\begin{cases} 
@@ -331,17 +332,17 @@
 	
 	Fourier series of $F_s$ is: 
 	\begin{equation}
-	    F_s(w) = \sum\limits_{k=-\infty}^{\infty}C_ke^{-jwkT}
+	    F_s(w) = \sum_{k=-\infty}^{\infty}C_ke^{-jwkT}
 	\end{equation}
 	where: 
 	 \begin{equation}
-	    C_k=\frac{1}{w_s} \int\limits_{0}^{\infty}e^{jwkT}F_s(w)dw
+	    C_k=\frac{1}{w_s} \int_{0}^{\infty}e^{jwkT}F_s(w)dw
 	\end{equation}
 	
 	
 	Compute:
 	 \begin{equation}
-	    f(kT)=\frac{1}{2\pi}\int\limits_{-\infty}^{\infty}e^{jwkT}F(w)dw=\frac{1}{2\pi}\int\limits_{-\frac{w_s}{2}}^{\frac{w_s}{2}}e^{jwkT}TF_s(w)dw=\frac{1}{w_s}\int\limits_{-\frac{w_s}{2}}^{\frac{w_s}{2}}e^{jwkT}F(w)dw= C_k
+	    f(kT)=\frac{1}{2\pi}\int_{-\infty}^{\infty}e^{jwkT}F(w)dw=\frac{1}{2\pi}\int_{-\frac{w_s}{2}}^{\frac{w_s}{2}}e^{jwkT}TF_s(w)dw=\frac{1}{w_s}\int_{-\frac{w_s}{2}}^{\frac{w_s}{2}}e^{jwkT}F(w)dw= C_k
 	\end{equation}
 		
 	Apparently this shows that we can reconstruct $F_s(w)$.\\
@@ -352,7 +353,7 @@
 	\subsection{Aliasing \& Folding}
 	The forrier series of the sampled signal was previously given as:
 	 \begin{equation}
-		F_s(w):=\frac{1}{T}\sum\limits_{k=-\infty}^{\infty}F(w+kw_s)
+		F_s(w):=\frac{1}{T}\sum_{k=-\infty}^{\infty}F(w+kw_s)
 	\end{equation}
 	Here you should consider what this is representing. Imagine $F(w)$ is the frequency response which will be centred around 0. Therefore the summation $F(w+kw_s)$ creates many copies of that given response. For $w_s>2w_1$ we can see that the spectra do not intersect (in this case then signal can be reconstructed).
 	\FloatBarrier
@@ -368,16 +369,16 @@
 		\includegraphics[scale=0.25]{images/aliasing_and_folding_2}
 	\end{figure}
 	Summary: 
-	"If $\frac{w_s}{2}\leq$ then frequencies higher than appear ‚Äúfolded‚Äù between 0 and $\frac{w_s}{2}$. Sampling at frequencies lower than the Nyquist one $\frac{w_s}{2}$ can hide frequencies."
+	``If $\frac{w_s}{2}\leq$ then frequencies higher than appear \textit{folded}Äù between 0 and $\frac{w_s}{2}$. Sampling at frequencies lower than the Nyquist one $\frac{w_s}{2}$ can hide frequencies.''
 	\subsection{Example: Sinusoidal input to sample-and-hold}
 	I would take this with a pinch of salt, the maths are all valid but i'm not sure what this achieves really.\\
-	modulate $u(t)= sin(wt+\phi)=im(e^{j(wt+\phi)})$ with $\sum\limits_{k=-\infty}^{\infty}\delta(t-kT)$ which has the representation:
+	modulate $u(t)= \sin(wt+\phi)=im\left(e^{j(wt+\phi)}\right)$ with $\sum_{k=-\infty}^{\infty}\delta(t-kT)$ which has the representation:
 	\begin{equation}
-		\sum\limits_{k=-\infty}^{\infty}e^{-kjw_st}= 2\sum\limits_{k=0}^{\infty}cos(kw_st)    
+		\sum_{k=-\infty}^{\infty}e^{-kjw_st}= 2\sum_{k=0}^{\infty}cos(kw_st)    
 	\end{equation}
 	Here is a quick proof of this as given in the lecture:
 	\begin{equation}
-		2\sum\limits_{k=0}^{\infty}cos(kw_st)= ...+e^{2jw_st}+e^{jw_st}1+1+e^{-jw_st}+ e^{-2jw_st}+...    
+		2\sum_{k=0}^{\infty}cos(kw_st)= ...+e^{2jw_st}+e^{jw_st}1+1+e^{-jw_st}+ e^{-2jw_st}+...    
 	\end{equation}
 	Using the exponential definition of cos(t):
 	\begin{equation}
@@ -388,11 +389,11 @@
 	
 	The output of the sampler is:
 	\begin{equation}
-		\frac{1}{T}(\sin(wt+\phi)+2\sum\limits_{k=1}^{\infty}\cos(kw_st)\sin(wt+\phi) 
+		\frac{1}{T}(\sin(wt+\phi)+2\sum_{k=1}^{\infty}\cos(kw_st)\sin(wt+\phi) 
 	\end{equation}
 	which can be found to be equal to:
 	\begin{equation}
-		\frac{1}{T}(\sin(wt+\phi)+2\sum\limits_{k=1}^{\infty}\sin(kw_st+wt+\phi) -\sin(kw_st-wt-\phi))
+		\frac{1}{T}(\sin(wt+\phi)+2\sum_{k=1}^{\infty}\sin(kw_st+wt+\phi) -\sin(kw_st-wt-\phi))
 	\end{equation}
 	This finds that there are frequency components at $w\pm kw_s$:
 	\FloatBarrier
@@ -406,7 +407,7 @@
 	\end{eqnarray}
 	But for $w=\frac{w_s}{2}$ this produces two components in the sampled signal. in this case the output after a zero order hold bloc:
 	\begin{eqnarray}
-		u_r(t)=\frac{1}{T}im(2e^{j(\pi -\phi)}sin(\phi)G(jw)e^{j(wt+\phi)})
+		u_r(t)=\frac{1}{T}im\left(2e^{j(\pi -\phi)}\sin(\phi)G(jw)e^{j(wt+\phi)}\right)
 	\end{eqnarray}
 	Notice the dependence on $\phi$ as in this case if it is equal to $\pi$ then $u_r=0$.\\
 	Sampling at or under the Nyquist rate for reconstruction the phase is crucial therefore you should never trust the reconstructed signal.\\
@@ -538,7 +539,7 @@ into account in the control design.\\
 	we can then arrange this into matrix form:
 	
 \begin{gather}
-x(K+1)=
+x(k+1)=
  \begin{bmatrix} Y(k+1) \\ M(k+1 )\\ O(k+1)\end{bmatrix}
  =
   \begin{bmatrix}
@@ -599,18 +600,18 @@ Solution to the state-space equation:\\
 $x(0)$ given $x(k+1)= Ax(k)+Bu(k)$ where u(0), u(1)... is given.\\
 For discrete time:
 \begin{equation}
-	x(k) = A^kx(0)+\sum\limits_{k-1}^{j=0}A^{k-1-j}u(j)    
+	x(k) = A^kx(0)+\sum_{k-1}^{j=0}A^{k-1-j}u(j)    
 \end{equation}
 for continuous time:
 \begin{equation}
-	x(t) = e^{A\tau}+\int\limits_{0}^{t}e^{A(t-\tau)}Bu(\tau)d\tau    
+	x(t) = e^{A\tau}+\int_{0}^{t}e^{A(t-\tau)}Bu(\tau)d\tau    
 \end{equation}
 \section{Lecture 7 ( State-Space Self Study)}
 This worksheet contains 2 methods of solving state-space equations, both in the time domain and the Z-domain. (basic idea: Z domain is easier than time domain). I will skip over the solution in the time domain for now as it seems this was just trying to prove a point.
 \subsection{Z-Transform solution}
 We will consider the state-space equation from the previous lecture. But first we will rewrite $y(k)$ in terms of $x(0)$:
 \begin{equation}
-    y(k) = CA^kx(0)+\sum\limits_{k-1}^{j=0}CA^{k-1-j}Bu(j) + Du(k)  
+    y(k) = CA^kx(0)+\sum_{j=0}^{k-1}CA^{k-1-j}Bu(j) + Du(k)  
 \end{equation}
 Using Z-Transforms make sure you are happy deriving the following from the definition of the $x(\cdot)$:
 \begin{gather}
@@ -1137,7 +1138,7 @@ D               & D
 
 		\subsection{Observers}
 		A system that estimates $x(k)$ on the basis of knowledge of ${u_k}$ and ${y_k}$.\\
-		"Estimates" means: the observer computes a vector $x'(k)$ such that $\lim\limits_{k\rightarrow \infty}x(k)-x'(k)=0$.\\
+		"Estimates" means: the observer computes a vector $x'(k)$ such that $\lim_{k\rightarrow \infty}x(k)-x'(k)=0$.\\
 		\begin{figure}[htp]
 		\centering
 		\includegraphics[scale=0.4]{images/l11_2}
@@ -1263,14 +1264,14 @@ D               & D
 		\end{bmatrix}-
 		\begin{bmatrix}
 			L_0\\
-			L-1
+			L_1
 		\end{bmatrix}
 		\begin{bmatrix}
 			6 & 7 
 		\end{bmatrix}=
 		\begin{bmatrix}
 			1-6L_0& 2-7L_0\\
-			-6L-1 & 3-7L_1
+			-6L_1 & 3-7L_1
 		\end{bmatrix}
 	\end{gather}
 	We can find the characteristic polynomial using $det(z\mathbb{I}-(A-LC))$ is\\ $(z-1+6L_0)(s-3+7L_1)+6L_1(2-7L_0)$\\
